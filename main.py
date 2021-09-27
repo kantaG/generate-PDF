@@ -34,4 +34,6 @@ draw.add(PolyLine(list(zip(times, pred)), strokeColor=colors.blue))
 draw.add(PolyLine(list(zip(times, high)), strokeColor=colors.red))
 draw.add(PolyLine(list(zip(times, low)), strokeColor=colors.green))
 
+draw.add(String(73, 122.5, 'Sunspots', fontSize=15, fillColor=colors.red))
+
 renderPDF.drawToFile(draw, 'test1.pdf', 'sunspots')
