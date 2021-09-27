@@ -1,3 +1,8 @@
+import reportlab
+from reportlab.lib import colors
+from reportlab.graphics.shapes import *
+from reportlab.graphics import renderPDF
+
 data = [
 #    Year  Month   Predicted    High   Low
     (2019, 10,     3.4,       10.4, 0.0),
@@ -12,3 +17,21 @@ data = [
     (2020, 7,      2.4,       12.4, 0.0),
     ]
 
+draw = Drawing(200, 150)
+
+format_x = 7
+format_y = 6.7
+
+margin_x = 10
+margin_y = 10
+
+pred = [row[2]*format_x+margin_x for row in data]
+high = [row[3]*format_x+margin_x for row in data]
+low = [row[4]*format_x+margin_x for row in data]
+times = [200*((row[0] + row[1]/12.0) - 2019 ) -150 for row in data]
+
+draw.add(PolyLine(list(zip(times, pred)), strokeColor=colors.blue))
+draw.add(PolyLine(list(zip(times, high)), strokeColor=colors.red))
+draw.add(PolyLine(list(zip(times, low)), strokeColor=colors.green))
+
+renderPDF.drawToFile(draw, 'test1.pdf', 'sunspots')
