@@ -19,15 +19,15 @@ data = [
 
 draw = Drawing(200, 150)
 
-format_x = 7
+format_x = 18
 format_y = 6.7
 
 margin_x = 10
 margin_y = 10
 
-pred = [row[2]*format_x+margin_x for row in data]
-high = [row[3]*format_x+margin_x for row in data]
-low = [row[4]*format_x+margin_x for row in data]
+pred = [row[2]*format_y+margin_y for row in data]
+high = [row[3]*format_y+margin_y for row in data]
+low = [row[4]*format_y+margin_y for row in data]
 times = [200*((row[0] + row[1]/12.0) - 2019 ) -150 for row in data]
 
 draw.add(PolyLine(list(zip(times, pred)), strokeColor=colors.blue))
